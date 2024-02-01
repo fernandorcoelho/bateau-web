@@ -1,4 +1,4 @@
-# teste-app-vue
+# bateau-web
 
 ## Project setup
 ```
