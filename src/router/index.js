@@ -2,6 +2,7 @@ import Vue from 'vue'
 import Router from 'vue-router'
 import HomePage from '@/views/HomePage.vue'
 import SignIn from '@/views/SignIn.vue'
+import authMiddleware from '@/middleware/authMiddleware';
 
 Vue.use(Router)
 
@@ -10,13 +11,14 @@ Router.prototype.push = function push (location) {
   return originalPush.call(this, location).catch(err => err)
 }
 
-export default new Router({
-  mode: 'history', // Use 'hash' se não estiver usando um servidor configurado para SPA
+const router = new Router({
+  mode: 'history',
   routes: [
     {
       path: '/',
       name: 'HomePage',
-      component: HomePage
+      component: HomePage,
+      meta: { requiresAuth: true }
     },
     {
       path: '/sign-in',
@@ -26,3 +28,7 @@ export default new Router({
     // ... outras rotas
   ]
 });
+
+router.beforeEach(authMiddleware);
+
+export default router

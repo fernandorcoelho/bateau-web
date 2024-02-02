@@ -30,13 +30,12 @@
                 required
                 rounded
                 dense
-                filled
-                hint="Sua senha deve ter pelo menos 8 dígitos."></v-text-field>
+                filled></v-text-field>
             </div>
 
             <div class="mt-5 d-flex flex-column">
               <v-spacer></v-spacer>
-              <v-btn large depressed class="btn" rounded @click="login">
+              <v-btn large depressed class="btn" rounded @click="performLogin">
                 Entrar
               </v-btn>
 
@@ -85,6 +84,7 @@
 
 <script>
 import Vue from 'vue';
+import { mapActions } from 'vuex';
 import VueRouter from 'vue-router';
 
 import BackgroundCircles from '@/components/BackgroundCircles.vue';
@@ -116,18 +116,26 @@ export default {
     };
   },
   methods: {
-    login() {
-      if (!this.valid) {
+    ...mapActions(['login']),
+    async performLogin() {
+      if (this.valid) { // Verifica se o formulário é válido
+        try {
+          await this.login(this.loginForm); // Chama a ação do Vuex
+          this.snackbarMessage = 'Login feito com sucesso!';
+          this.snackbarColor = 'rgba(102, 187, 106, 0.2)';
+          this.snackbar = true;
+          // Aqui você pode redirecionar o usuário para outra página, se necessário
+          this.navigateTo('/')
+        } catch (error) {
+          this.snackbarMessage = error.response.data.message;
+          this.snackbarColor = 'rgba(239, 83, 80, 0.2)';
+          this.snackbar = true;
+        }
+      } else {
         this.snackbarMessage = 'Formulário inválido';
-        this.snackbarColor = 'rgba(239, 83, 80, 0.2)',
+        this.snackbarColor = 'rgba(239, 83, 80, 0.2)';
         this.snackbar = true;
-        return;
       }
-
-      this.snackbarMessage = 'Login feito com sucesso!';
-      this.snackbarColor = 'rgba(102, 187, 106, 0.2)',
-      this.snackbar = true;
-      // Lógica de login
     },
     resetForm() {
       this.$refs.form.reset();

@@ -8,29 +8,63 @@
 
   <v-spacer></v-spacer>
 
-  <v-btn @click="navigateTo('/sign-in')" outlined prepend-icon="mdi-login">
+  <v-btn v-if="!isAuthenticated" @click="navigateTo('/sign-in')" outlined prepend-icon="mdi-login">
     <span class="font-weight-black">Entrar</span>
   </v-btn>
+
+  <v-menu v-else offset-y>
+    <template v-slot:activator="{ on, attrs }">
+      <v-btn flat text v-bind="attrs" v-on="on" class="transparent">
+        <span class="font-weight-black userNameText">{{ userName }}!</span>
+      </v-btn>
+    </template>
+
+    <v-list class="glass">
+      <v-list-item @click="navigateTo('/profile')">
+        <v-list-item-title>Perfil</v-list-item-title>
+      </v-list-item>
+      <v-list-item @click="performLogout">
+        <v-list-item-title>Sair</v-list-item-title>
+      </v-list-item>
+    </v-list>
+  </v-menu>
 </v-app-bar>
 </template>
 
 <script>
 import Vue from 'vue';
 import VueRouter from 'vue-router';
+import { mapGetters } from 'vuex';
 
 Vue.use(VueRouter);
 
 export default {
   name: 'AppHeader',
+  computed: {
+    ...mapGetters(['isAuthenticated', 'user']),
+    userName() {
+      return this.user ? this.user.name : '';
+    }
+  },
   methods: {
     navigateTo(path) {
       this.$router.push(path);
-    }
+    },
+    performLogout() {
+      this.$store.dispatch('logout')
+      this.$router.push('sign-in')
+    },
   }
 }
 </script>
 
 <style>
+.userNameText {
+  max-width: 130px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
 .glass {
   background: rgba(255, 255, 255, 0.05);
   backdrop-filter: blur(16px);

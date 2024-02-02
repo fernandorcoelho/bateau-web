@@ -10,10 +10,6 @@
 	min-height: 100vh;
 } */
 
-.v-snack__wrapper {
-	backdrop-filter: blur(10px);
-}
-
 html, body { 
 	width: 100vw;
 	overflow: auto !important;
@@ -22,4 +18,13 @@ html, body {
 * {
 	padding: 0;
 	margin: 0;
+}
+
+.v-snack__wrapper {
+	backdrop-filter: blur(10px);
+}
+
+.glass {
+	backdrop-filter: blur(16px);
+	background-color: rgba(255, 255, 255, 0.2);
 }
