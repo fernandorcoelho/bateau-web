@@ -5,16 +5,20 @@
   <v-main style="overflow: hidden;">
     <router-view></router-view>
   </v-main>
+
+  <SnackBar />
 </v-app>
 </template>
 
 <script>
 import AppHeader from './components/AppHeader';
+import SnackBar from './components/SnackBar.vue';
 
 export default {
   name: 'App',
   components: {
-    AppHeader
+    AppHeader,
+    SnackBar
   },
   data: () => ({
     //

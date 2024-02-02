@@ -3,7 +3,7 @@ import authService from '@/api/auth'
 const state = {
   user: JSON.parse(localStorage.getItem('user')) || null,
   accessToken: localStorage.getItem('accessToken') || null,
-  roles: JSON.parse(localStorage.getItem('roles')) || null,
+  roles: JSON.parse(localStorage.getItem('roles')) || null
 }
 
 const getters = {

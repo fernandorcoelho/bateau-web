@@ -12,7 +12,7 @@
 
 html, body { 
 	width: 100vw;
-	overflow: auto !important;
+	overflow-y: auto !important;
 }
 
 * {
@@ -26,5 +26,16 @@ html, body {
 
 .glass {
 	backdrop-filter: blur(16px);
-	background-color: rgba(255, 255, 255, 0.2);
+	background-color: rgba(255, 255, 255, 0.2) !important;
+}
+
+.btn-primary {
+  background-image: linear-gradient(to right, #d500f0, #ae14d6, #8a19ba, #69189e, #4a1481);
+}
+
+.glass-card {
+	background-color: #ffffff0d;
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  box-shadow: rgba(255, 255, 255, 0.0) 0px -23px 25px 0px inset, rgba(255, 255, 255, 0.08) 0px -36px 30px 0px inset, rgba(255, 255, 255, 0) 0px -79px 40px 0px inset, rgba(255, 255, 255, 0.06) 0px 2px 1px, rgba(255, 255, 255, 0.0) 0px 4px 2px, rgba(255, 255, 255, 0.0) 0px 8px 4px, rgba(255, 255, 255, 0.04) 0px 16px 8px, rgba(255, 255, 255, 0.04) 0px 32px 16px !important;
 }

@@ -1,12 +1,13 @@
-// store/index.js
 import Vue from 'vue';
 import Vuex from 'vuex';
-import auth from './modules/auth'; // Importa o módulo de autenticação
+import auth from './modules/auth';
+import snackbar from './modules/snackbar';
 
 Vue.use(Vuex);
 
 export default new Vuex.Store({
   modules: {
-    auth // Registra o módulo de autenticação
+    auth,
+    snackbar
   }
 });

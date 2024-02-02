@@ -4,6 +4,7 @@ import 'es6-promise/auto'
 import store from './store'
 import App from './App.vue'
 import vuetify from './plugins/vuetify'
+import VueTheMask from 'vue-the-mask'
 import router from './router'
 import 'vuetify/dist/vuetify.min.css'
 import '../public/css/global.css'
@@ -12,6 +13,7 @@ import '../public/css/global.css'
 
 Vue.use(vuetify)
 Vue.use(Vuex)
+Vue.use(VueTheMask)
 
 new Vue({
   vuetify,

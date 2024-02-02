@@ -10,6 +10,6 @@ export default {
     return axios.get(`${API_URL}/auth/check-token`, { headers: { 'Authorization': `Bearer ${token}` } });
   },
   register(user) {
-    return axios.post(`${API_URL}/users`, user)
+    return axios.post(`${API_URL}/auth/register`, user)
   }
 }

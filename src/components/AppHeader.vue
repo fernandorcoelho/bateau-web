@@ -8,9 +8,16 @@
 
   <v-spacer></v-spacer>
 
-  <v-btn v-if="!isAuthenticated" @click="navigateTo('/sign-in')" outlined prepend-icon="mdi-login">
-    <span class="font-weight-black">Entrar</span>
-  </v-btn>
+  <div v-if="!isAuthenticated">
+    <v-btn @click="navigateTo('/sign-up')" plain class="mr-3 glass">
+      <span class="font-weight-black lime--text text--accent-2">Cadastrar</span>
+    </v-btn>
+
+    <v-btn @click="navigateTo('/sign-in')" outlined>
+      <span class="font-weight-black">Entrar</span>
+    </v-btn>
+  </div>
+  
 
   <v-menu v-else offset-y>
     <template v-slot:activator="{ on, attrs }">
@@ -19,7 +26,7 @@
       </v-btn>
     </template>
 
-    <v-list class="glass">
+    <v-list dark class="glass">
       <v-list-item @click="navigateTo('/profile')">
         <v-list-item-title>Perfil</v-list-item-title>
       </v-list-item>
